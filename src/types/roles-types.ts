@@ -1,21 +1,19 @@
 import { Repository } from "./repository-types";
 
-export interface User{
+export interface Role{
     id:string,
-    name:string,
-    username: string,
-    email:string
+    name:string
 }
 
 
 // persistencia
-export interface IUserRepository extends Repository<User>{}
+export interface IRoleRepository extends Repository<Role>{}
 
 // lógica
-export interface IUserService{
-    createUser(user:User): Promise<User>;
-    findUsers():Promise<User[]>;
-    findUserById(id:string):Promise<User | null>;
-    updateUser(id:string, user:Partial<User>): Promise<User | null>;
-    deleteUser(id:string): Promise<boolean>;
+export interface IRoleService{
+    createRole(role:Role): Promise<Role>;
+    findRoles():Promise<Role[]>;
+    findRoleById(id:string):Promise<Role | null>;
+    updateRole(id:string, role:Partial<Role>): Promise<Role | null>;
+    deleteRole(id:string): Promise<boolean>;
 }
