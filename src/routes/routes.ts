@@ -1,7 +1,7 @@
-import { UserRepository } from '@repositories/userRepository';
-import { UserService } from '@services/userService';
+import { UserRepository } from '@repositories/user-repository';
+import { UserService } from '@services/user-service';
 import { Router } from 'express';
-import { IUserRepository, IUserService, User } from 'types/UsersTypes';
+import { IUserRepository, IUserService, User } from 'types/users-types';
 
 const router = Router()
 
@@ -13,6 +13,12 @@ export default () => {
     router.get("/health", (req, res)=>{
         res.send("API Saludable");
     });
+
+    router.get('/users/:id', async (req, res) => {
+        const id:string = req.params.id;
+        const user = await userService.findUserById(id);
+        res.json(user);
+    });
     
     router.get('/users', async (req, res) => {
         const users = await userService.findUsers();
@@ -23,6 +29,20 @@ export default () => {
         const newUser:User = req.body;
         const result = await userService.createUser(newUser);
 
+        res.json(result);
+    })
+
+    router.put('/users/:id', async (req, res) => {
+        const id:string = req.params.id;
+        const data:Partial<User> = req.body;
+        const result = await userService.updateUser(id, data);
+        res.json(result);
+    })
+
+
+    router.delete('/users/:id', async (req, res) => {
+        const id:string = req.params.id;
+        const result = await userService.deleteUser(id);
         res.json(result);
     })
 
