@@ -1,3 +1,4 @@
+import { signin, signup } from '@controllers/auth/auth-controller';
 import { findRoleById, findRoles, createRole, updateRole, deleteRole } from '@controllers/role-controller';
 import { createUser, deleteUser, findUserById, findUsers, updateUser } from '@controllers/user-controller';
 import { Router } from 'express';
@@ -7,6 +8,11 @@ const router = Router()
 
 
 export default () => {
+
+
+    //auth
+    router.post('/auth/signup', signup);
+    router.post('/auth/signin', signin);
 
     // users
     router.get('/users/:id', findUserById);

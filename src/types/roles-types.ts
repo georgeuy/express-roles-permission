@@ -1,8 +1,8 @@
 import { Repository } from "./repository-types";
 
 export interface Role{
-    id:string,
-    name:string
+    id:string;
+    name:string;
 }
 
 

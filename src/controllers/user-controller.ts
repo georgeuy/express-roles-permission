@@ -33,7 +33,7 @@ export const createUser = async (req: Request, res: Response) => {
     const newUser:User = req.body;
     try {
         const result = await userService.createUser(newUser);
-        res.json(result);
+        res.status(201).json(result);
     } catch (error) {
         console.error('User Controller Error: ', error);
         throw new GenericError("Error al intentar registrar un nuevo usuario en la DB")
