@@ -23,18 +23,18 @@ const UserSchema: Schema = new Schema<User>(
             type:String,
             required: true,
             trim: true,
-            //select: false  // Evita que se incluya el password en las consultas SQL. Si se requiere en alguna consulta deberá llamarse con .select('+password')
+            select: false  // Evita que se incluya el password en las consultas SQL. Si se requiere en alguna consulta deberá llamarse con .select('+password')
         }
     },
     {
         timestamps: true,
         versionKey: false,
-        toJSON: {
+        /*toJSON: {
             transform: function(doc, ret) {
                 delete ret.password;
                 return ret;
             }
-        }
+        }*/
     }
 );
 

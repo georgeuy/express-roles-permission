@@ -1,4 +1,4 @@
-import { Repository } from "./repository-types";
+import { Query, Repository } from "./repository-types";
 
 export interface Role{
     id:string;
@@ -12,7 +12,7 @@ export interface IRoleRepository extends Repository<Role>{}
 // lógica
 export interface IRoleService{
     createRole(role:Role): Promise<Role>;
-    findRoles():Promise<Role[]>;
+    findRoles(query?: Query):Promise<Role[]>;
     findRoleById(id:string):Promise<Role | null>;
     updateRole(id:string, role:Partial<Role>): Promise<Role | null>;
     deleteRole(id:string): Promise<boolean>;

@@ -9,15 +9,17 @@ export class UserRepository implements IUserRepository{
         return await newUser.save();
     }
     
-    async find(): Promise<User[]> {
-        return await UserModel.find().exec();
+    async find(query:Query): Promise<User[]> {
+        return await UserModel.find(query ?? {}).exec();
     }
 
     async findById(id: string): Promise<User | null> {
         return await UserModel.findById(id).exec();
     }
 
-    async findOne(query:Query): Promise<User | null> {
+    async findOne(query:Query, fields?:string): Promise<User | null> {
+        if(fields)
+            return await UserModel.findOne(query).select(fields).exec();
         return await UserModel.findOne(query).exec();
     }
     
