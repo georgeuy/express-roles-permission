@@ -1,6 +1,9 @@
-import { signin, signup } from '@controllers/auth/auth-controller';
+import { refreshAccessToken, signin, signup } from '@controllers/auth/auth-controller';
+import { findPostById, findPosts, createPost, updatePost, deletePost } from '@controllers/post-controller';
 import { findRoleById, findRoles, createRole, updateRole, deleteRole } from '@controllers/role-controller';
 import { createUser, deleteUser, findUserById, findUsers, updateUser } from '@controllers/user-controller';
+import { getPermissions, verifyToken } from '@middlewares/auth';
+import { checkRoles } from '@middlewares/role';
 import { Router } from 'express';
 
 
@@ -11,22 +14,32 @@ export default () => {
 
 
     //auth
-    router.post('/auth/signup', signup);
+    router.post('/auth/signup', checkRoles, signup);
     router.post('/auth/signin', signin);
+    router.post('/auth/refresh', refreshAccessToken);
+
 
     // users
-    router.get('/users/:id', findUserById);
-    router.get('/users', findUsers);
-    router.post('/users', createUser);
-    router.put('/users/:id', updateUser)
-    router.delete('/users/:id', deleteUser)
+    router.get('/users/:id', verifyToken, getPermissions, findUserById);
+    router.get('/users', verifyToken, getPermissions, findUsers);
+    router.post('/users', verifyToken, getPermissions, checkRoles, createUser);
+    router.put('/users/:id', verifyToken, getPermissions, updateUser)
+    router.delete('/users/:id', verifyToken, getPermissions, deleteUser)
 
     // roles
-    router.get('/roles/:id', findRoleById);
-    router.get('/roles', findRoles);
-    router.post('/roles', createRole);
-    router.put('/roles/:id', updateRole)
-    router.delete('/roles/:id', deleteRole)
+    router.get('/roles/:id', verifyToken, getPermissions, findRoleById);
+    router.get('/roles', verifyToken, getPermissions, findRoles);
+    router.post('/roles', verifyToken, getPermissions, createRole);
+    router.put('/roles/:id', verifyToken, getPermissions, updateRole)
+    router.delete('/roles/:id', verifyToken, getPermissions, deleteRole)
+
+    // posts
+    router.get('/posts/:id', findPostById);
+    router.get('/posts', findPosts);
+    router.post('/posts', verifyToken, getPermissions, createPost);
+    router.put('/posts/:id', verifyToken, getPermissions, updatePost)
+    router.delete('/posts/:id', verifyToken, getPermissions, deletePost)
+
 
 
     return router;

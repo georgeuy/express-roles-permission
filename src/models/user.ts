@@ -24,7 +24,17 @@ const UserSchema: Schema = new Schema<User>(
             required: true,
             trim: true,
             select: false  // Evita que se incluya el password en las consultas SQL. Si se requiere en alguna consulta deberá llamarse con .select('+password')
-        }
+        },
+        permissions:{
+            type: [String],
+            default: []
+        },
+        roles:[
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Role"
+            }
+        ]
     },
     {
         timestamps: true,

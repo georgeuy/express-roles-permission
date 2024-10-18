@@ -1,13 +1,17 @@
-import { Document } from "mongoose";
+import { Document, ObjectId } from "mongoose";
 import { Query, Repository } from "./repository-types";
+import { Role } from "./roles-types";
+import { Post } from "./posts-types";
 
 
 export interface User extends Document{
-    id?:string;
     name:string;
     username: string;
     email:string;
     password:string;
+    roles?: Role[];
+    permissions?: string[];
+    posts?:Post[];
     comparePassword(password:string): Promise<boolean>;
 }
 

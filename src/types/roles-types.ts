@@ -1,8 +1,9 @@
+import { Document } from "mongoose";
 import { Query, Repository } from "./repository-types";
 
-export interface Role{
-    id:string;
+export interface Role extends Document{
     name:string;
+    permissions:string[];
 }
 
 

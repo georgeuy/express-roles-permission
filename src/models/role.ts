@@ -5,7 +5,12 @@ const RoleSchema: Schema = new Schema<Role>(
     {
         name:{
             type:String,
-            required: true
+            required: true,
+            unique: true
+        },
+        permissions:{
+            type: [String],
+            default: []
         }
     },
     {
