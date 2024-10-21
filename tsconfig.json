@@ -1,22 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2021",
     "outDir": "./dist", // carpeta de salida
     "rootDir": "./src", // carpeta raíz del código fuente
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "Node",
+    "module": "CommonJS",
     "baseUrl": "./src", //base para los alias
     "paths": {
-      "@controllers/*":["controllers/*"],
-      "@services/*":["services/*"],
-      "@repositories/*":["repositories/*"],
-      "@models/*":["models/*"],
-      "@routes/*":["routes/*"],
-      "@server/*":["server/*"],
-      "@errors/*":["errors/*"],
-      "@middlewares/*":["middlewares/*"],
-      "@config/*":["config/*"]
+      "@*":["*"]
     },
     "typeRoots": ["@types","./node_modules/@types"]
   },

@@ -1,7 +1,7 @@
 
 ### find users
 GET http://localhost:5011/api/v1/users HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTI2OTNiZDFjMTc2NDM3MDQ0NGY0NSIsImlhdCI6MTcyOTI3NTAwMywiZXhwIjoxNzI5Mjc4NjAzfQ.dMnOCmCCCHrJQBwxt6uhx_6l2YHQu_iyv5uRVNGjWng
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTI2OTNiZDFjMTc2NDM3MDQ0NGY0NSIsImlhdCI6MTcyOTUxNzkxOCwiZXhwIjoxNzI5NTIxNTE4fQ.2qG8GgbsDuncNdFoak9Wdsfjy_UhYKK35xjG5SQX-5E
 
 
 ### find user by id
